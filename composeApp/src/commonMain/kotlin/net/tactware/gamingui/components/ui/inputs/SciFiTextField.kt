@@ -80,7 +80,7 @@ fun SciFiTextField(
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
     val isHovered by interactionSource.collectIsHoveredAsState()
-    
+
     // Increase glow intensity when focused or hovered
     val glowIntensity by animateFloatAsState(
         targetValue = when {
@@ -91,19 +91,19 @@ fun SciFiTextField(
         },
         label = "glowIntensity"
     )
-    
+
     // Adjust colors based on state
     val currentBorderColor = when {
         !enabled -> borderColor.copy(alpha = 0.5f)
         isFocused -> glowColor
         else -> borderColor
     }
-    
+
     val currentTextColor = when {
         !enabled -> textColor.copy(alpha = 0.5f)
         else -> textColor
     }
-    
+
     Column(modifier = modifier) {
         // Optional label
         if (label != null) {
@@ -114,7 +114,7 @@ fun SciFiTextField(
                 modifier = Modifier.padding(bottom = 4.dp)
             )
         }
-        
+
         // Text field with sci-fi styling
         BasicTextField(
             value = value,
@@ -206,7 +206,7 @@ fun SciFiPasswordField(
 ) {
     // Use password visual transformation
     val passwordVisualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
-    
+
     SciFiTextField(
         value = value,
         onValueChange = onValueChange,
@@ -269,7 +269,7 @@ fun SciFiNumberField(
     val numericFilter: (String) -> String = { input ->
         input.filter { it.isDigit() || it == '.' || it == '-' }
     }
-    
+
     SciFiTextField(
         value = value,
         onValueChange = { onValueChange(numericFilter(it)) },

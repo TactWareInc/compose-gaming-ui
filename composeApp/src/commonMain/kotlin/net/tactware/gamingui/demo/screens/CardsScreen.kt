@@ -25,12 +25,13 @@ import net.tactware.gamingui.components.theme.SciFiTypography
 import net.tactware.gamingui.components.ui.buttons.SciFiButton
 import net.tactware.gamingui.components.ui.buttons.SciFiSuccessButton
 import net.tactware.gamingui.components.ui.buttons.SciFiWarningButton
-import net.tactware.gamingui.components.ui.containers.InfoBoxType
-import net.tactware.gamingui.components.ui.containers.SciFiCard
-import net.tactware.gamingui.components.ui.containers.SciFiDialog
-import net.tactware.gamingui.components.ui.containers.SciFiHolographicContainer
-import net.tactware.gamingui.components.ui.containers.SciFiInfoBox
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
+import net.tactware.gamingui.components.ui.containers.components.InfoBoxType
+import net.tactware.gamingui.components.ui.containers.components.SciFiCard
+import net.tactware.gamingui.components.ui.containers.components.SciFiDialog
+import net.tactware.gamingui.components.ui.containers.components.SciFiHolographicContainer
+import net.tactware.gamingui.components.ui.containers.components.SciFiInfoBox
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
+
 
 /**
  * Screen showcasing the SciFi UI card and panel components.

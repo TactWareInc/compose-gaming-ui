@@ -34,9 +34,10 @@ import net.tactware.gamingui.components.animations.scanLineEffect
 import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiTypography
 import net.tactware.gamingui.components.ui.buttons.SciFiButton
-import net.tactware.gamingui.components.ui.containers.SciFiCard
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
-import net.tactware.gamingui.components.ui.inputs.SciFiSlider
+import net.tactware.gamingui.components.ui.containers.components.SciFiCard
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
+import net.tactware.gamingui.components.ui.inputs.components.SciFiSlider
+
 
 /**
  * Screen showcasing the SciFi UI animation and effect components.
@@ -68,7 +69,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -88,7 +89,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Scan Line Effect
             SciFiPanel(
                 title = "Scan Line Effect",
@@ -100,7 +101,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -120,7 +121,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Holographic Particles
             SciFiPanel(
                 title = "Holographic Particles",
@@ -132,7 +133,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -153,7 +154,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Grid Background
             SciFiPanel(
                 title = "Grid Background",
@@ -165,7 +166,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -186,7 +187,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Rotating Glow
             SciFiPanel(
                 title = "Rotating Glow",
@@ -198,7 +199,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -217,7 +218,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Typing Text
             SciFiPanel(
                 title = "Typing Text Animation",
@@ -229,10 +230,10 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 var typingComplete by remember { mutableStateOf(false) }
                 var restartTyping by remember { mutableStateOf(false) }
-                
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -243,7 +244,7 @@ fun AnimationsScreen(
                         typingComplete = false
                         restartTyping = false
                     }
-                    
+
                     TypingText(
                         text = "Welcome to the SciFi UI Component Library. This text is being typed out character by character.",
                         typingSpeed = 20f,
@@ -252,9 +253,9 @@ fun AnimationsScreen(
                         color = SciFiColors.primary
                     )
                 }
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
+
                 SciFiButton(
                     onClick = { restartTyping = true },
                     text = "Restart Typing Animation",
@@ -262,7 +263,7 @@ fun AnimationsScreen(
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }
-            
+
             // Loading Spinner
             SciFiPanel(
                 title = "Loading Spinner",
@@ -274,7 +275,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly,
@@ -287,7 +288,7 @@ fun AnimationsScreen(
                         strokeWidth = 2f,
                         rotationDuration = 2000
                     )
-                    
+
                     // Medium spinner
                     SciFiLoadingSpinner(
                         color = SciFiColors.primaryGlow,
@@ -295,7 +296,7 @@ fun AnimationsScreen(
                         strokeWidth = 2.5f,
                         rotationDuration = 2000
                     )
-                    
+
                     // Large spinner
                     SciFiLoadingSpinner(
                         color = SciFiColors.secondary,
@@ -305,7 +306,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Progress Bar
             SciFiPanel(
                 title = "Progress Bar",
@@ -317,9 +318,9 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 var progressValue by remember { mutableFloatStateOf(0.5f) }
-                
+
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = "Progress: ${(progressValue * 100).toInt()}%",
@@ -327,7 +328,7 @@ fun AnimationsScreen(
                         color = SciFiColors.onSurface,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
-                    
+
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -341,9 +342,9 @@ fun AnimationsScreen(
                             scanLineEffect = true
                         )
                     }
-                    
+
                     Spacer(modifier = Modifier.height(16.dp))
-                    
+
                     SciFiSlider(
                         value = progressValue,
                         onValueChange = { progressValue = it },
@@ -352,7 +353,7 @@ fun AnimationsScreen(
                     )
                 }
             }
-            
+
             // Combined Effects Demo
             SciFiPanel(
                 title = "Combined Effects Demo",
@@ -364,7 +365,7 @@ fun AnimationsScreen(
                     color = SciFiColors.onSurface,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
-                
+
                 SciFiCard(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -397,16 +398,16 @@ fun AnimationsScreen(
                                 color = SciFiColors.primary,
                                 modifier = Modifier.padding(bottom = 16.dp)
                             )
-                            
+
                             SciFiLoadingSpinner(
                                 color = SciFiColors.primaryGlow,
                                 size = 48f,
                                 strokeWidth = 2f,
                                 rotationDuration = 2000
                             )
-                            
+
                             Spacer(modifier = Modifier.height(16.dp))
-                            
+
                             Box(
                                 modifier = Modifier
                                     .width(200.dp)

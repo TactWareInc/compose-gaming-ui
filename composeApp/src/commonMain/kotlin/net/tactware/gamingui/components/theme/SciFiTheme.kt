@@ -123,7 +123,7 @@ fun SciFiTheme(
 ) {
     // Always use dark theme for sci-fi UI, but allow override
     val colorScheme = if (darkTheme) DarkSciFiColorScheme else LightSciFiColorScheme
-    
+
     // Create custom sci-fi theme extras
     val sciFiExtras = SciFiThemeExtras(
         glowIntensity = glowIntensity,
@@ -134,7 +134,7 @@ fun SciFiTheme(
         errorGlow = SciFiColors.errorGlow,
         backgroundEffect = BackgroundEffect.Grid
     )
-    
+
     // Provide both Material theme and custom sci-fi extras
     CompositionLocalProvider(
         LocalSciFiThemeExtras provides sciFiExtras
@@ -154,13 +154,13 @@ object SciFiTheme {
     val extras: SciFiThemeExtras
         @Composable
         get() = LocalSciFiThemeExtras.current
-    
+
     val colors: SciFiColors
         get() = SciFiColors
-    
+
     val typography: SciFiTypography
         get() = SciFiTypography
-    
+
     val shapes: SciFiShapes
         get() = SciFiShapes
 

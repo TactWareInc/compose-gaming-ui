@@ -35,9 +35,9 @@ import net.tactware.gamingui.components.ui.buttons.SciFiCircleIconButton
 import net.tactware.gamingui.components.ui.buttons.SciFiDangerButton
 import net.tactware.gamingui.components.ui.buttons.SciFiIconButton
 import net.tactware.gamingui.components.ui.buttons.SciFiSuccessButton
-import net.tactware.gamingui.components.ui.buttons.SciFiToggleIconButton
-import net.tactware.gamingui.components.ui.containers.SciFiCard
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
+import net.tactware.gamingui.components.ui.containers.components.SciFiCard
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
+
 
 /**
  * Screen showcasing the SciFi UI button components.
@@ -74,7 +74,7 @@ fun ButtonsScreen(
                 SciFiButton(
                     onClick = { /* Do something */ },
                     text = "Primary Button",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -144,12 +144,6 @@ fun ButtonsScreen(
                     SciFiCircleIconButton(
                         onClick = { /* Do something */ },
                         icon = Icons.Default.Close,
-                    )
-
-                    SciFiToggleIconButton(
-                        checked = true,
-                        onCheckedChange = { /* Do something */ },
-                        icon = Icons.Default.Check,
                     )
                     
                     SciFiIconButton(

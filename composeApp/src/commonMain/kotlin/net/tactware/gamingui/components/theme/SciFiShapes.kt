@@ -1,144 +1,290 @@
 package net.tactware.gamingui.components.theme
 
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
 /**
- * Shape definitions for the Sci-Fi UI theme.
- * 
- * These shapes are designed to evoke a futuristic sci-fi aesthetic with
- * angular corners, notches, and asymmetrical designs.
+ * Shapes for the Sci-Fi UI theme.
+ *
+ * These shapes define the appearance of various UI components with a sci-fi aesthetic.
  */
 object SciFiShapes {
     // Basic shapes with rounded corners
     val smallRoundedCorner = RoundedCornerShape(4.dp)
     val mediumRoundedCorner = RoundedCornerShape(8.dp)
     val largeRoundedCorner = RoundedCornerShape(12.dp)
-    
-    // Standard button shape with slight rounding
-    val buttonShape = RoundedCornerShape(4.dp)
-    
-    // Sci-fi button with notched corners
-    val sciFiButtonShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerSize = minOf(width, height) * 0.2f
-        
-        // Start from top-left with inset
-        moveTo(0f, cornerSize)
-        lineTo(0f, height - cornerSize)
-        lineTo(cornerSize, height)
-        lineTo(width - cornerSize, height)
-        lineTo(width, height - cornerSize)
-        lineTo(width, cornerSize)
-        lineTo(width - cornerSize, 0f)
-        lineTo(cornerSize, 0f)
-        close()
+
+    // Basic shapes with cut corners
+    val smallCutCorner = CutCornerShape(4.dp)
+    val mediumCutCorner = CutCornerShape(8.dp)
+    val largeCutCorner = CutCornerShape(12.dp)
+
+    // Asymmetric shapes for buttons and cards
+    val asymButtonShape = CutCornerShape(
+        topStart = 0.dp,
+        topEnd = 8.dp,
+        bottomStart = 8.dp,
+        bottomEnd = 0.dp
+    )
+
+    val asymCardShape = CutCornerShape(
+        topStart = 0.dp,
+        topEnd = 16.dp,
+        bottomStart = 16.dp,
+        bottomEnd = 0.dp
+    )
+
+    // Sci-fi button shape with angled corners
+    val sciFiButtonShape = CutCornerShape(
+        topStart = 4.dp,
+        topEnd = 12.dp,
+        bottomStart = 12.dp,
+        bottomEnd = 4.dp
+    )
+
+    // Sci-fi card shape with more pronounced cut corners
+    val sciFiCardShape = CutCornerShape(
+        topStart = 0.dp,
+        topEnd = 24.dp,
+        bottomStart = 24.dp,
+        bottomEnd = 0.dp
+    )
+
+    // Sci-fi panel shape with all corners cut
+    val sciFiPanelShape = CutCornerShape(12.dp)
+
+    // Shapes for switches and toggles
+    val switchTrackShape = RoundedCornerShape(16.dp)
+    val switchThumbShape = CircleShape
+
+    // Hexagonal shape for buttons or icons
+    val hexagonalShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                val centerX = size.width / 2
+                val centerY = size.height / 2
+                val radius = minOf(size.width, size.height) / 2
+
+                // Create a hexagon
+                for (i in 0 until 6) {
+                    val angle = (i * 60f) * (Math.PI.toFloat() / 180f)
+                    val x = centerX + radius * kotlin.math.cos(angle)
+                    val y = centerY + radius * kotlin.math.sin(angle)
+
+                    if (i == 0) {
+                        moveTo(x, y)
+                    } else {
+                        lineTo(x, y)
+                    }
+                }
+                close()
+            }
+            return Outline.Generic(path)
+        }
     }
-    
-    // Asymmetrical button with right side notch
-    val asymButtonShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerSize = minOf(width, height) * 0.15f
-        val notchSize = minOf(width, height) * 0.1f
-        
-        // Start from top-left
-        moveTo(cornerSize, 0f)
-        lineTo(width - cornerSize - notchSize, 0f)
-        lineTo(width - notchSize, cornerSize)
-        lineTo(width, cornerSize)
-        lineTo(width, height - cornerSize)
-        lineTo(width - cornerSize, height)
-        lineTo(cornerSize, height)
-        lineTo(0f, height - cornerSize)
-        lineTo(0f, cornerSize)
-        close()
+
+    // Diamond shape for special buttons or indicators
+    val diamondShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                val centerX = size.width / 2
+                val centerY = size.height / 2
+
+                // Create a diamond
+                moveTo(centerX, 0f)
+                lineTo(size.width, centerY)
+                lineTo(centerX, size.height)
+                lineTo(0f, centerY)
+                close()
+            }
+            return Outline.Generic(path)
+        }
     }
-    
-    // Card shape with top-right corner cut
-    val cardShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerSize = minOf(width, height) * 0.1f
-        val cutSize = minOf(width, height) * 0.15f
-        
-        // Start from top-left
-        moveTo(0f, cornerSize)
-        lineTo(0f, height - cornerSize)
-        lineTo(cornerSize, height)
-        lineTo(width - cornerSize, height)
-        lineTo(width, height - cornerSize)
-        lineTo(width, cornerSize + cutSize)
-        lineTo(width - cutSize, cornerSize)
-        lineTo(width - cutSize - cornerSize, cornerSize)
-        lineTo(width - cutSize - cornerSize, 0f)
-        lineTo(cornerSize, 0f)
-        close()
+
+    // Octagonal shape for stop buttons or warnings
+    val octagonalShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                val centerX = size.width / 2
+                val centerY = size.height / 2
+                val radius = minOf(size.width, size.height) / 2
+
+                // Create an octagon
+                for (i in 0 until 8) {
+                    val angle = (i * 45f) * (Math.PI.toFloat() / 180f)
+                    val x = centerX + radius * kotlin.math.cos(angle)
+                    val y = centerY + radius * kotlin.math.sin(angle)
+
+                    if (i == 0) {
+                        moveTo(x, y)
+                    } else {
+                        lineTo(x, y)
+                    }
+                }
+                close()
+            }
+            return Outline.Generic(path)
+        }
     }
-    
-    // Panel shape with bottom-left corner extended
-    val panelShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerSize = minOf(width, height) * 0.08f
-        val extSize = minOf(width, height) * 0.12f
-        
-        // Start from top-left with slight rounding
-        moveTo(cornerSize, 0f)
-        lineTo(width - cornerSize, 0f)
-        lineTo(width, cornerSize)
-        lineTo(width, height - cornerSize)
-        lineTo(width - cornerSize, height)
-        lineTo(cornerSize + extSize, height)
-        lineTo(cornerSize, height - extSize)
-        lineTo(0f, height - extSize - cornerSize)
-        lineTo(0f, cornerSize)
-        close()
+
+    // Triangular shape for directional buttons or indicators
+    val triangularShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                // Create a triangle pointing right
+                moveTo(0f, 0f)
+                lineTo(size.width, size.height / 2)
+                lineTo(0f, size.height)
+                close()
+            }
+            return Outline.Generic(path)
+        }
     }
-    
-    // Dialog shape with top and bottom notches
-    val dialogShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerSize = minOf(width, height) * 0.05f
-        val notchWidth = minOf(width, height) * 0.2f
-        val notchHeight = minOf(width, height) * 0.05f
-        
-        // Calculate center position for top notch
-        val topNotchStart = (width - notchWidth) / 2
-        val topNotchEnd = topNotchStart + notchWidth
-        
-        // Start from top-left, after the notch
-        moveTo(cornerSize, 0f)
-        lineTo(topNotchStart, 0f)
-        lineTo(topNotchStart + notchWidth * 0.3f, notchHeight)
-        lineTo(topNotchEnd - notchWidth * 0.3f, notchHeight)
-        lineTo(topNotchEnd, 0f)
-        lineTo(width - cornerSize, 0f)
-        lineTo(width, cornerSize)
-        lineTo(width, height - cornerSize)
-        lineTo(width - cornerSize, height)
-        lineTo(width * 0.6f, height)
-        lineTo(width * 0.55f, height - notchHeight)
-        lineTo(width * 0.45f, height - notchHeight)
-        lineTo(width * 0.4f, height)
-        lineTo(cornerSize, height)
-        lineTo(0f, height - cornerSize)
-        lineTo(0f, cornerSize)
-        close()
+
+    // Notched rectangle shape for tech-looking components
+    val notchedRectangleShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                val notchSize = minOf(size.width, size.height) * 0.1f
+
+                // Start from top-left with a notch
+                moveTo(0f, notchSize)
+                lineTo(notchSize, 0f)
+
+                // Top edge
+                lineTo(size.width - notchSize, 0f)
+
+                // Top-right notch
+                lineTo(size.width, notchSize)
+
+                // Right edge
+                lineTo(size.width, size.height - notchSize)
+
+                // Bottom-right notch
+                lineTo(size.width - notchSize, size.height)
+
+                // Bottom edge
+                lineTo(notchSize, size.height)
+
+                // Bottom-left notch
+                lineTo(0f, size.height - notchSize)
+
+                // Close the path
+                close()
+            }
+            return Outline.Generic(path)
+        }
     }
-    
-    // TextField shape with subtle angles
+
+    // Asymmetric tech shape for futuristic components
+    val techShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                val width = size.width
+                val height = size.height
+                val cornerSize = minOf(width, height) * 0.15f
+
+                // Start from top-left
+                moveTo(0f, cornerSize)
+                lineTo(cornerSize, 0f)
+
+                // Top edge with notch
+                lineTo(width * 0.4f, 0f)
+                lineTo(width * 0.5f, cornerSize)
+                lineTo(width - cornerSize, 0f)
+
+                // Top-right corner
+                lineTo(width, cornerSize)
+
+                // Right edge
+                lineTo(width, height - cornerSize)
+
+                // Bottom-right corner
+                lineTo(width - cornerSize, height)
+
+                // Bottom edge with notch
+                lineTo(width * 0.6f, height)
+                lineTo(width * 0.5f, height - cornerSize)
+                lineTo(cornerSize, height)
+
+                // Bottom-left corner
+                lineTo(0f, height - cornerSize)
+
+                // Close the path
+                close()
+            }
+            return Outline.Generic(path)
+        }
+    }
+
+    // Circular progress indicator shape with a gap
+    val progressIndicatorShape = object : Shape {
+        override fun createOutline(
+            size: Size,
+            layoutDirection: LayoutDirection,
+            density: Density
+        ): Outline {
+            val path = Path().apply {
+                val centerX = size.width / 2
+                val centerY = size.height / 2
+                val radius = minOf(size.width, size.height) / 2
+
+                // Create a circle with a gap at the top
+                arcTo(
+                    rect = Rect(
+                        left = centerX - radius,
+                        top = centerY - radius,
+                        right = centerX + radius,
+                        bottom = centerY + radius,
+                    ),
+                    startAngleDegrees = 30f,
+                    sweepAngleDegrees = 300f,
+                    forceMoveTo = true
+                )
+            }
+            return Outline.Generic(path)
+        }
+    }
     val textFieldShape = GenericShape { size, _ ->
         val width = size.width
         val height = size.height
         val cornerSize = minOf(width, height) * 0.1f
         val inset = minOf(width, height) * 0.05f
-        
+
         // Start from top-left with inset
         moveTo(inset, 0f)
         lineTo(width - inset, 0f)
@@ -150,79 +296,5 @@ object SciFiShapes {
         lineTo(0f, inset)
         close()
     }
-    
-    // Switch track shape (pill with notches)
-    val switchTrackShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerRadius = height / 2
-        val notchDepth = height * 0.15f
-        val notchWidth = height * 0.2f
-        
-        // Top edge with notch
-        moveTo(cornerRadius, 0f)
-        lineTo(width * 0.4f - notchWidth / 2, 0f)
-        lineTo(width * 0.4f, notchDepth)
-        lineTo(width * 0.4f + notchWidth / 2, 0f)
-        lineTo(width - cornerRadius, 0f)
-        
-        // Right curved edge
-        arcTo(
-            rect = Rect(
-                left = width - height,
-                top = 0f,
-                right = width,
-                bottom = height
-            ),
-            startAngleDegrees = 270f,
-            sweepAngleDegrees = 180f,
-            forceMoveTo = false
-        )
-        
-        // Bottom edge with notch
-        lineTo(width * 0.6f + notchWidth / 2, height)
-        lineTo(width * 0.6f, height - notchDepth)
-        lineTo(width * 0.6f - notchWidth / 2, height)
-        lineTo(cornerRadius, height)
-        
-        // Left curved edge
-        arcTo(
-            rect = Rect(
-                left = 0f,
-                top = 0f,
-                right = height,
-                bottom = height
-            ),
-            startAngleDegrees = 90f,
-            sweepAngleDegrees = 180f,
-            forceMoveTo = false
-        )
-        
-        close()
-    }
-    
-    // Switch thumb shape (angular with cutout)
-    val switchThumbShape = GenericShape { size, _ ->
-        val width = size.width
-        val height = size.height
-        val cornerSize = minOf(width, height) * 0.2f
-        val cutoutSize = minOf(width, height) * 0.3f
-        
-        // Start from top-left
-        moveTo(cornerSize, 0f)
-        lineTo(width - cornerSize, 0f)
-        lineTo(width, cornerSize)
-        lineTo(width, height - cornerSize)
-        lineTo(width - cornerSize, height)
-        lineTo(cornerSize, height)
-        lineTo(0f, height - cornerSize)
-        lineTo(0f, cornerSize)
-        
-        // Add a small triangular cutout on the left side
-        moveTo(0f, height * 0.5f - cutoutSize / 2)
-        lineTo(cutoutSize, height * 0.5f)
-        lineTo(0f, height * 0.5f + cutoutSize / 2)
-        
-        close()
-    }
+
 }

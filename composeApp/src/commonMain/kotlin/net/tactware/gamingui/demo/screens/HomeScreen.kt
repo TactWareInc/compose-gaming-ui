@@ -22,11 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.tactware.gamingui.components.theme.SciFiColors
+import net.tactware.gamingui.components.theme.SciFiShapes
 import net.tactware.gamingui.components.theme.SciFiTypography
 import net.tactware.gamingui.components.ui.buttons.SciFiButton
 import net.tactware.gamingui.components.ui.buttons.SciFiIconButton
-import net.tactware.gamingui.components.ui.containers.SciFiCard
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
+import net.tactware.gamingui.components.ui.containers.components.SciFiCard
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
 
 /**
  * Home screen for the SciFi UI Demo app.
@@ -164,6 +165,7 @@ fun ComponentShowcaseScaffold(
                     SciFiIconButton(
                         onClick = onNavigateUp,
                         icon = Icons.Default.ArrowBack,
+                        shape = SciFiShapes.hexagonalShape
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

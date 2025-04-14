@@ -20,14 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiTypography
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
-import net.tactware.gamingui.components.ui.inputs.SciFiCheckbox
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
+
 import net.tactware.gamingui.components.ui.inputs.SciFiNumberField
 import net.tactware.gamingui.components.ui.inputs.SciFiPasswordField
-import net.tactware.gamingui.components.ui.inputs.SciFiSearchField
-import net.tactware.gamingui.components.ui.inputs.SciFiSlider
+
 import net.tactware.gamingui.components.ui.inputs.SciFiTextArea
 import net.tactware.gamingui.components.ui.inputs.SciFiTextField
+import net.tactware.gamingui.components.ui.inputs.components.SciFiCheckbox
+import net.tactware.gamingui.components.ui.inputs.components.SciFiSearchField
+import net.tactware.gamingui.components.ui.inputs.components.SciFiSlider
 
 /**
  * Screen showcasing the SciFi UI text field and input components.

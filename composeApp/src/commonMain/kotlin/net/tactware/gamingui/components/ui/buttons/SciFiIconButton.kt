@@ -6,6 +6,7 @@ import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -95,7 +96,7 @@ fun SciFiIconButton(
             }
         )
     
-    IconButton(
+    FilledIconButton (
         onClick = onClick,
         modifier = buttonModifier,
         enabled = enabled,
@@ -105,7 +106,8 @@ fun SciFiIconButton(
             disabledContainerColor = backgroundColor,
             disabledContentColor = iconColor
         ),
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        shape = shape,
     ) {
         Icon(
             imageVector = icon,

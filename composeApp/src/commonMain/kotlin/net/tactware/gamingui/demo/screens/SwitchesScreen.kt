@@ -20,10 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiTypography
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
-import net.tactware.gamingui.components.ui.switches.SciFiSegmentedToggle
-import net.tactware.gamingui.components.ui.switches.SciFiSwitch
-import net.tactware.gamingui.components.ui.switches.SciFiToggleSwitch
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
+import net.tactware.gamingui.components.ui.switches.components.SciFiSegmentedToggle
+import net.tactware.gamingui.components.ui.switches.components.SciFiSwitch
+import net.tactware.gamingui.components.ui.switches.components.SciFiToggleSwitch
+
 
 /**
  * Screen showcasing the SciFi UI switch and toggle components.

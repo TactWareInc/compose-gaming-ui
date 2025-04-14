@@ -20,11 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiTypography
-import net.tactware.gamingui.components.ui.containers.SciFiPanel
+import net.tactware.gamingui.components.ui.containers.components.SciFiPanel
 import net.tactware.gamingui.components.ui.dropdown.Orientation
 import net.tactware.gamingui.components.ui.dropdown.SciFiDropdown
-import net.tactware.gamingui.components.ui.dropdown.SciFiRadioGroup
-import net.tactware.gamingui.components.ui.dropdown.SciFiSegmentedControl
+import net.tactware.gamingui.components.ui.dropdown.components.SciFiRadioGroup
+import net.tactware.gamingui.components.ui.dropdown.components.SciFiSegmentedControl
 
 /**
  * Screen showcasing the SciFi UI dropdown and selector components.
