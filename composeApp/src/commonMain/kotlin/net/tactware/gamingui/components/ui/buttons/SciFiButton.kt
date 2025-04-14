@@ -1,25 +1,48 @@
 package net.tactware.gamingui.components.ui.buttons
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.addOutline
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.tactware.gamingui.components.theme.SciFiColors
@@ -58,7 +81,7 @@ fun SciFiButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val isHovered by interactionSource.collectIsHoveredAsState()
-    
+
     // Increase glow intensity when hovered or pressed
     val glowIntensity by animateFloatAsState(
         targetValue = when {
@@ -69,19 +92,19 @@ fun SciFiButton(
         },
         label = "glowIntensity"
     )
-    
+
     // Adjust colors based on state
     val backgroundColor = when {
         !enabled -> buttonColor.copy(alpha = 0.5f)
         isPressed -> buttonColor.copy(alpha = 0.8f)
         else -> buttonColor
     }
-    
+
     val textColor = when {
         !enabled -> contentColor.copy(alpha = 0.5f)
         else -> contentColor
     }
-    
+
     // Apply sci-fi styling with glowing border
     val buttonModifier = modifier
         .defaultMinSize(minWidth = 88.dp, minHeight = 36.dp)
@@ -100,7 +123,7 @@ fun SciFiButton(
                 }
             }
         )
-    
+
     Button(
         onClick = onClick,
         modifier = buttonModifier,
@@ -122,6 +145,49 @@ fun SciFiButton(
         )
     }
 }
+
+@Composable
+fun SciFiButton2(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    buttonColor: Color = SciFiColors.primary,
+    borderColor: Color = SciFiColors.secondary,
+    contentColor: Color = SciFiColors.onPrimary,
+    glowColor: Color = SciFiColors.primaryGlow,
+    content: @Composable RowScope.() -> Unit
+) {
+    val shape = CutCornerShape(8.dp)
+    val interactionSource = remember { MutableInteractionSource() }
+    val isHovered by interactionSource.collectIsHoveredAsState()
+    Box(contentAlignment = Alignment.Center) {
+        Surface(
+            modifier = modifier
+                .clip(shape)
+                .border(BorderStroke(2.dp, borderColor), shape)
+                .then(
+                    if (isHovered) Modifier.border(
+                        BorderStroke(4.dp, glowColor),
+                        shape
+                    ) else Modifier
+                )
+                .hoverable(interactionSource = interactionSource)
+                .clickable(interactionSource = interactionSource, indication = null) {
+                    onClick()
+                }
+                .padding(16.dp),
+            color = buttonColor,
+            contentColor = contentColor,
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                content = content
+            )
+        }
+    }
+
+}
+
 
 /**
  * A sci-fi themed button with an asymmetrical design and glowing borders.
@@ -283,7 +349,7 @@ fun SciFiOutlineButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val isHovered by interactionSource.collectIsHoveredAsState()
-    
+
     // Increase glow intensity when hovered or pressed
     val glowIntensity by animateFloatAsState(
         targetValue = when {
@@ -294,19 +360,19 @@ fun SciFiOutlineButton(
         },
         label = "glowIntensity"
     )
-    
+
     // Adjust colors based on state
     val borderColor = when {
         !enabled -> outlineColor.copy(alpha = 0.5f)
         isPressed -> outlineColor.copy(alpha = 0.8f)
         else -> outlineColor
     }
-    
+
     val textColor = when {
         !enabled -> contentColor.copy(alpha = 0.5f)
         else -> contentColor
     }
-    
+
     // Apply sci-fi styling with glowing border
     Box(
         modifier = modifier
@@ -321,7 +387,11 @@ fun SciFiOutlineButton(
                     shape = { size ->
                         val path = androidx.compose.ui.graphics.Path()
                         val shapeHelper = shape
-                        val outline = shapeHelper.createOutline(size, density = androidx.compose.ui.unit.Density(1f), layoutDirection = androidx.compose.ui.unit.LayoutDirection.Ltr)
+                        val outline = shapeHelper.createOutline(
+                            size,
+                            density = androidx.compose.ui.unit.Density(1f),
+                            layoutDirection = androidx.compose.ui.unit.LayoutDirection.Ltr
+                        )
                         path.addOutline(outline)
                         path
                     }
@@ -336,5 +406,82 @@ fun SciFiOutlineButton(
             color = textColor,
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Composable
+fun SciFiGlowButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isHovered by interactionSource.collectIsHoveredAsState()
+
+    val glowColor by animateColorAsState(
+        if (isHovered) SciFiColors.primaryGlow else Color.Transparent,
+        animationSpec = tween(300),
+        label = "GlowColor"
+    )
+
+    val strokeColor by animateColorAsState(
+        if (isHovered) SciFiColors.primaryGlow else SciFiColors.primary,
+        animationSpec = tween(300),
+        label = "StrokeColor"
+    )
+
+    Box(
+        modifier = modifier
+            .graphicsLayer()
+            .pointerInput(Unit) { detectTapGestures(onTap = { onClick() }) }
+            .hoverable(interactionSource)
+            .padding(8.dp)
+    ) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val strokeWidth = 3.dp.toPx()
+            val path = Path().apply {
+                val inset = strokeWidth / 2
+                moveTo(inset + 10f, inset)
+                lineTo(size.width - inset - 10f, inset)
+                lineTo(size.width - inset, inset + 10f)
+                lineTo(size.width - inset, size.height - inset - 10f)
+                lineTo(size.width - inset - 10f, size.height - inset)
+                lineTo(inset + 10f, size.height - inset)
+                lineTo(inset, size.height - inset - 10f)
+                lineTo(inset, inset + 10f)
+                close()
+            }
+
+            drawPath(
+                path = path,
+                color = strokeColor,
+                style = Stroke(width = strokeWidth)
+            )
+
+            if (isHovered) {
+                drawPath(
+                    path = path,
+                    color = glowColor,
+                    style = Stroke(width = strokeWidth * 2),
+                    alpha = 0.6f,
+                    blendMode = BlendMode.Plus
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .align(Alignment.Center)
+        ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelLarge.copy(
+                    color = Color.White,
+                    shadow = if (isHovered)
+                        Shadow(glowColor, offset = Offset.Zero, blurRadius = 20f)
+                    else null
+                )
+            )
+        }
     }
 }

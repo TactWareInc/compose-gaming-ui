@@ -25,6 +25,8 @@ import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiShapes
 import net.tactware.gamingui.components.theme.SciFiTypography
 import net.tactware.gamingui.components.theme.drawSciFiBorder
+import net.tactware.gamingui.components.theme.effects.sciFiGlowingBorder
+import net.tactware.gamingui.components.theme.sciFiScanLine
 
 /**
  * A sci-fi themed panel with a title header and glowing borders.
@@ -70,17 +72,7 @@ fun SciFiPanel(
                 color = backgroundColor,
                 shape = shape
             )
-            .drawWithContent {
-                drawContent()
-                // Draw sci-fi border with glow effect
-                drawSciFiBorder(
-                    borderColor = borderColor.copy(alpha = glowIntensity),
-                    borderWidth = 1.5f,
-                    notchSize = 10f,
-                    segmentLength = 40f,
-                    gapLength = 5f
-                )
-            }.hoverable(interactionSource)
+            .hoverable(interactionSource)
     ) {
         // Panel header
         Box(

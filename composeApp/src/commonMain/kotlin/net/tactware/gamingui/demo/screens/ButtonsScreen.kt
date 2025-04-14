@@ -31,8 +31,10 @@ import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiTypography
 import net.tactware.gamingui.components.ui.buttons.SciFiAsymButton
 import net.tactware.gamingui.components.ui.buttons.SciFiButton
+import net.tactware.gamingui.components.ui.buttons.SciFiButton2
 import net.tactware.gamingui.components.ui.buttons.SciFiCircleIconButton
 import net.tactware.gamingui.components.ui.buttons.SciFiDangerButton
+import net.tactware.gamingui.components.ui.buttons.SciFiGlowButton
 import net.tactware.gamingui.components.ui.buttons.SciFiIconButton
 import net.tactware.gamingui.components.ui.buttons.SciFiSuccessButton
 import net.tactware.gamingui.components.ui.containers.components.SciFiCard
@@ -79,10 +81,22 @@ fun ButtonsScreen(
                 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                SciFiAsymButton(
+                SciFiButton2 (
                     onClick = { /* Do something */ },
-                    text = "Asym Button",
                     modifier = Modifier.fillMaxWidth(),
+                    content = {
+                        Text(
+                            text = "Primary Button 2",
+                        )
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                SciFiGlowButton (
+                    onClick = { /* Do something */ },
+                    modifier = Modifier.fillMaxWidth() .height(60.dp),
+                    text = "Test"
                 )
                 
                 Spacer(modifier = Modifier.height(8.dp))

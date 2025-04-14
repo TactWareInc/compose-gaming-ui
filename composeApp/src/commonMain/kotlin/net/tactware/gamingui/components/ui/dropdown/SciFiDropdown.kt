@@ -36,6 +36,7 @@ import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiShapes
 import net.tactware.gamingui.components.theme.SciFiTypography
 import net.tactware.gamingui.components.theme.drawSciFiBorder
+import net.tactware.gamingui.components.theme.sciFiCircuitBorder
 
 /**
  * A sci-fi themed dropdown menu with glowing borders and hover effects.
@@ -124,19 +125,11 @@ fun <T> SciFiDropdown(
                     color = if (enabled) backgroundColor else backgroundColor.copy(alpha = 0.7f),
                     shape = SciFiShapes.textFieldShape
                 )
-                .drawWithContent {
-                    drawContent()
-                    if (enabled) {
-                        // Draw sci-fi border with glow effect
-                        drawSciFiBorder(
-                            borderColor = currentBorderColor.copy(alpha = glowIntensity),
-                            borderWidth = 1.5f,
-                            notchSize = 4f,
-                            segmentLength = if (expanded) 30f else 20f,
-                            gapLength = if (expanded) 2f else 4f
-                        )
-                    }
-                }
+                .sciFiCircuitBorder(
+                    borderColor = currentBorderColor,
+                    glowColor = glowColor,
+                    glowIntensity = glowIntensity,
+                )
                 .clickable(
                     enabled = enabled,
                     interactionSource = interactionSource,

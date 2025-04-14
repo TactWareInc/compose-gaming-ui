@@ -165,7 +165,7 @@ fun ComponentShowcaseScaffold(
                     SciFiIconButton(
                         onClick = onNavigateUp,
                         icon = Icons.Default.ArrowBack,
-                        shape = SciFiShapes.hexagonalShape
+                        shape = SciFiShapes.smallCutCorner
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

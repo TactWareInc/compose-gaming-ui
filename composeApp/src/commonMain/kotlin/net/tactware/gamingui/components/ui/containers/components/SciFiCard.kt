@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import net.tactware.gamingui.components.theme.SciFiColors
 import net.tactware.gamingui.components.theme.SciFiShapes
 import net.tactware.gamingui.components.theme.drawSciFiBorder
+import net.tactware.gamingui.components.theme.effects.sciFiCircuitBorder
 
 /**
  * A sci-fi themed card with glowing borders and hover effects.
@@ -59,18 +60,7 @@ fun SciFiCard(
             .background(
                 color = backgroundColor,
                 shape = shape
-            )
-            .drawWithContent {
-                drawContent()
-                // Draw sci-fi border with glow effect
-                drawSciFiBorder(
-                    borderColor = borderColor.copy(alpha = glowIntensity),
-                    borderWidth = 1.5f,
-                    notchSize = 8f,
-                    segmentLength = 30f,
-                    gapLength = 5f
-                )
-            }
+            ).sciFiCircuitBorder( borderColor, glowColor, glowIntensity = glowIntensity)
             .hoverable(interactionSource)
     ) {
         Column(
