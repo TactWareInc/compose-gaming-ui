@@ -270,83 +270,83 @@ fun DrawScope.drawSciFiBorder(
     segmentLength: Float = 50f,
     gapLength: Float = 10f
 ) {
-    val width = size.width
-    val height = size.height
-
-    // Function to draw a segmented line
-    fun drawSegmentedLine(start: Offset, end: Offset) {
-        val dx = end.x - start.x
-        val dy = end.y - start.y
-        val length = kotlin.math.sqrt(dx * dx + dy * dy)
-        val unitX = dx / length
-        val unitY = dy / length
-
-        var distanceCovered = 0f
-        while (distanceCovered < length) {
-            val segmentStart = Offset(
-                start.x + unitX * distanceCovered,
-                start.y + unitY * distanceCovered
-            )
-
-            val currentSegmentLength = kotlin.math.min(segmentLength, length - distanceCovered)
-            val segmentEnd = Offset(
-                segmentStart.x + unitX * currentSegmentLength,
-                segmentStart.y + unitY * currentSegmentLength
-            )
-
-            drawLine(
-                color = borderColor,
-                start = segmentStart,
-                end = segmentEnd,
-                strokeWidth = borderWidth
-            )
-
-            distanceCovered += currentSegmentLength + gapLength
-        }
-    }
-
-    // Top edge with notch
-    drawSegmentedLine(
-        start = Offset(0f, 0f),
-        end = Offset(width * 0.4f - notchSize, 0f)
-    )
-    drawSegmentedLine(
-        start = Offset(width * 0.4f, notchSize),
-        end = Offset(width * 0.4f + notchSize, 0f)
-    )
-    drawSegmentedLine(
-        start = Offset(width * 0.4f + notchSize, 0f),
-        end = Offset(width, 0f)
-    )
-
-    // Right edge
-    drawSegmentedLine(
-        start = Offset(width, 0f),
-        end = Offset(width, height)
-    )
-
-    // Bottom edge with notch
-    drawSegmentedLine(
-        start = Offset(width, height),
-        end = Offset(width * 0.6f + notchSize, height)
-    )
-    drawSegmentedLine(
-        start = Offset(width * 0.6f + notchSize, height),
-        end = Offset(width * 0.6f, height - notchSize)
-    )
-    drawSegmentedLine(
-        start = Offset(width * 0.6f, height - notchSize),
-        end = Offset(width * 0.6f - notchSize, height)
-    )
-    drawSegmentedLine(
-        start = Offset(width * 0.6f - notchSize, height),
-        end = Offset(0f, height)
-    )
-
-    // Left edge
-    drawSegmentedLine(
-        start = Offset(0f, height),
-        end = Offset(0f, 0f)
-    )
+//    val width = size.width
+//    val height = size.height
+//
+//    // Function to draw a segmented line
+//    fun drawSegmentedLine(start: Offset, end: Offset) {
+//        val dx = end.x - start.x
+//        val dy = end.y - start.y
+//        val length = kotlin.math.sqrt(dx * dx + dy * dy)
+//        val unitX = dx / length
+//        val unitY = dy / length
+//
+//        var distanceCovered = 0f
+//        while (distanceCovered < length) {
+//            val segmentStart = Offset(
+//                start.x + unitX * distanceCovered,
+//                start.y + unitY * distanceCovered
+//            )
+//
+//            val currentSegmentLength = kotlin.math.min(segmentLength, length - distanceCovered)
+//            val segmentEnd = Offset(
+//                segmentStart.x + unitX * currentSegmentLength,
+//                segmentStart.y + unitY * currentSegmentLength
+//            )
+//
+//            drawLine(
+//                color = borderColor,
+//                start = segmentStart,
+//                end = segmentEnd,
+//                strokeWidth = borderWidth
+//            )
+//
+//            distanceCovered += currentSegmentLength + gapLength
+//        }
+//    }
+//
+//    // Top edge with notch
+//    drawSegmentedLine(
+//        start = Offset(0f, 0f),
+//        end = Offset(width * 0.4f - notchSize, 0f)
+//    )
+//    drawSegmentedLine(
+//        start = Offset(width * 0.4f, notchSize),
+//        end = Offset(width * 0.4f + notchSize, 0f)
+//    )
+//    drawSegmentedLine(
+//        start = Offset(width * 0.4f + notchSize, 0f),
+//        end = Offset(width, 0f)
+//    )
+//
+//    // Right edge
+//    drawSegmentedLine(
+//        start = Offset(width, 0f),
+//        end = Offset(width, height)
+//    )
+//
+//    // Bottom edge with notch
+//    drawSegmentedLine(
+//        start = Offset(width, height),
+//        end = Offset(width * 0.6f + notchSize, height)
+//    )
+//    drawSegmentedLine(
+//        start = Offset(width * 0.6f + notchSize, height),
+//        end = Offset(width * 0.6f, height - notchSize)
+//    )
+//    drawSegmentedLine(
+//        start = Offset(width * 0.6f, height - notchSize),
+//        end = Offset(width * 0.6f - notchSize, height)
+//    )
+//    drawSegmentedLine(
+//        start = Offset(width * 0.6f - notchSize, height),
+//        end = Offset(0f, height)
+//    )
+//
+//    // Left edge
+//    drawSegmentedLine(
+//        start = Offset(0f, height),
+//        end = Offset(0f, 0f)
+//    )
 }
 
